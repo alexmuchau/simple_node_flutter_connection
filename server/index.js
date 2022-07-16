@@ -1,5 +1,8 @@
 const mysql = require('mysql')
 const express = require('express')
+const dotenv = require('dotenv')
+
+dotenv.config()
 
 var app = express()
 const bodyparser = require('body-parser')
@@ -7,10 +10,10 @@ const bodyparser = require('body-parser')
 app.use(bodyparser.json())
 
 var mysqlConnection = mysql.createConnection({
-  host: '26.108.152.239',
+  host: process.env.DATABASE_HOST,
   port: 3306,
-  user: 'Alex',
-  password: '12345678@',
+  user: process.env.DATABASE_USER,
+  password: process.env.DATABASE_PASSWORD,
   database: 'employeedb',
   multipleStatements: true
 })
